@@ -223,14 +223,24 @@ namespace MusicFlash
                         label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
                         Application.DoEvents(); //прерывание, чтобы не зависала оболочка
                     }
+                    else if (File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
+                    {
+                        if(!File.Exists(FlashFolder + "/" + FolderName + "/" + i + rndvalue + Path.GetFileName(testmass[i])))
+                        {
+                            File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + rndvalue + Path.GetFileName(testmass[i])); // копирование файлов
+                            progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
+                            int x = progressBar1.Value * 100 / testmass.Length;
+                            label6.Text = x.ToString() + " %";  //проценты прогресса
+                            label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
+                            Application.DoEvents(); //прерывание, чтобы не зависала оболочка
+                        }
+                        
+
+                        
+                    }
                     else
                     {
-                        File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + rndvalue + Path.GetFileName(testmass[i])); // копирование файлов
-                        progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
-                        int x = progressBar1.Value * 100 / testmass.Length;
-                        label6.Text = x.ToString() + " %";  //проценты прогресса
-                        label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
-                        Application.DoEvents(); //прерывание, чтобы не зависала оболочка
+                        continue;
                     }
 
 
