@@ -202,7 +202,7 @@ namespace MusicFlash
                 if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
 
                 {
-                    File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
+                    File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + " " + Path.GetFileName(testmass[i])); // копирование файлов
                     progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
                     int x = progressBar1.Value * 100 / testmass.Length;
                     label6.Text = x.ToString() + " %";  //проценты прогресса
