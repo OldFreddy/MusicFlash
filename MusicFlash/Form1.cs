@@ -170,7 +170,7 @@ namespace MusicFlash
                 }
                 else
                 {
-                    label8.Text = Convert.ToString(FilesSize-selectfile.Length);
+                    label8.Text = Convert.ToString ( Math.Ceiling((FilesSize-selectfile.Length)/1024/1024/1024));
                     break;
                 }
                 
