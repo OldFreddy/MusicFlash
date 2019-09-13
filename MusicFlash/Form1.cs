@@ -196,6 +196,7 @@ namespace MusicFlash
             progressBar1.Value = 0;
             
             
+            
            
 
 
@@ -203,32 +204,57 @@ namespace MusicFlash
             {
                 Random rand = new Random();
                 int rndvalue = rand.Next(10);
-                listBox3.Items.Add(rndvalue);
+                
 
                 FolderName = 1 + i / filesInDir;
-                
+
                 if (!Directory.Exists(FlashFolder + "/" + FolderName)) //проверка на существование директории
                 {
                     Directory.CreateDirectory(FlashFolder + "/" + FolderName); //создание директории
+
+                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
+
+                    {
+                        if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
+                        {
+                            File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
+                            progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
+                            int x = progressBar1.Value * 100 / testmass.Length;
+                            label6.Text = x.ToString() + " %";  //проценты прогресса
+                            label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
+                            Application.DoEvents(); //прерывание, чтобы не зависала оболочка
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
                 }
-                if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
-
+                else if (Directory.Exists(FlashFolder + "/" + FolderName))
                 {
-                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
-                    {
-                        File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
-                        progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
-                        int x = progressBar1.Value * 100 / testmass.Length;
-                        label6.Text = x.ToString() + " %";  //проценты прогресса
-                        label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
-                        Application.DoEvents(); //прерывание, чтобы не зависала оболочка
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                    
+                    int countOfDirs = Directory.GetDirectories(FlashFolder).Length;
+                    FolderName = countOfDirs + FolderName; //Вычисление количества созданных директорий
+                    listBox3.Items.Add((FolderCount));
+                    Directory.CreateDirectory(FlashFolder + "/" + FolderName); //создание директории
 
+                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
+
+                    {
+                        if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
+                        {
+                            File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
+                            progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
+                            int x = progressBar1.Value * 100 / testmass.Length;
+                            label6.Text = x.ToString() + " %";  //проценты прогресса
+                            label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
+                            Application.DoEvents(); //прерывание, чтобы не зависала оболочка
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
 
                 }
 
