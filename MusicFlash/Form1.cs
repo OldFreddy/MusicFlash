@@ -135,15 +135,19 @@ namespace MusicFlash
                 {
                     massrnd[i] = newRandomValue; //заполнение массива уникальным числом
                     
-
                     i++;
                 }
-
+                
                 numericUpDown1.Enabled = true;
             }
-            
-            /////Запись в листбокс отсортированных случайным образом имен файлов/////
-            filenamesSORT = new string[filenameswithdir.Length];
+            listBox3.Items.Clear();
+            for (int i = 0; i < filenameswithdir.Length; i++)
+            {
+                listBox3.Items.Add(massrnd[i]);
+            }
+
+                /////Запись в листбокс отсортированных случайным образом имен файлов/////
+                filenamesSORT = new string[filenameswithdir.Length];
             listBox2.Items.Clear();
             FilesSize = 0;
             
@@ -190,12 +194,19 @@ namespace MusicFlash
             label6.Visible = true;
             label7.Visible = true;
             progressBar1.Value = 0;
-                                                  
+            
+            
+           
+
 
             for (int i = 0; i < testmass.Length; i++)
             {
+                Random rand = new Random();
+                int rndvalue = rand.Next(10);
+                listBox3.Items.Add(rndvalue);
 
                 FolderName = 1 + i / filesInDir;
+                
                 if (!Directory.Exists(FlashFolder + "/" + FolderName)) //проверка на существование директории
                 {
                     Directory.CreateDirectory(FlashFolder + "/" + FolderName); //создание директории
@@ -203,7 +214,7 @@ namespace MusicFlash
                 if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
 
                 {
-                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + " " + Path.GetFileName(testmass[i])))
+                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
                     {
                         File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
                         progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
@@ -212,7 +223,15 @@ namespace MusicFlash
                         label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
                         Application.DoEvents(); //прерывание, чтобы не зависала оболочка
                     }
-                    else continue;
+                    else
+                    {
+                        File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + rndvalue + Path.GetFileName(testmass[i])); // копирование файлов
+                        progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
+                        int x = progressBar1.Value * 100 / testmass.Length;
+                        label6.Text = x.ToString() + " %";  //проценты прогресса
+                        label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
+                        Application.DoEvents(); //прерывание, чтобы не зависала оболочка
+                    }
 
 
                 }
@@ -237,5 +256,7 @@ namespace MusicFlash
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill(); //принудительная остановка процесса
         }
+
+        
     }
 }

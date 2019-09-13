@@ -46,13 +46,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(894, 12);
+            this.listBox1.Location = new System.Drawing.Point(839, 12);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 498);
             this.listBox1.TabIndex = 0;
@@ -232,11 +234,31 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "Объем файлов";
             // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Location = new System.Drawing.Point(975, 12);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(266, 498);
+            this.listBox3.TabIndex = 19;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(691, 294);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 20;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 521);
+            this.ClientSize = new System.Drawing.Size(1279, 521);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.listBox3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -284,6 +306,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.Button button5;
     }
 }
 
