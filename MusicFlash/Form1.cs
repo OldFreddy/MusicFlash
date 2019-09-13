@@ -189,6 +189,7 @@ namespace MusicFlash
             filesInDir = (int)numericUpDown1.Value; //считывание значения количества файлов в директории из переключателя
             label6.Visible = true;
             label7.Visible = true;
+            progressBar1.Value = 0;
                                                   
 
             for (int i = 0; i < testmass.Length; i++)
@@ -202,15 +203,21 @@ namespace MusicFlash
                 if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
 
                 {
-                    File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + " " + Path.GetFileName(testmass[i])); // копирование файлов
-                    progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
-                    int x = progressBar1.Value * 100 / testmass.Length;
-                    label6.Text = x.ToString() + " %";  //проценты прогресса
-                    label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
-                    Application.DoEvents(); //прерывание, чтобы не зависала оболочка
+                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + " " + Path.GetFileName(testmass[i])))
+                    {
+                        File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
+                        progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
+                        int x = progressBar1.Value * 100 / testmass.Length;
+                        label6.Text = x.ToString() + " %";  //проценты прогресса
+                        label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
+                        Application.DoEvents(); //прерывание, чтобы не зависала оболочка
+                    }
+                    else continue;
+
+
                 }
- 
-                
+
+
             }
             MessageBox.Show("Копирование завершено");
             ////////////////////////////////////////////////////////////////////////
