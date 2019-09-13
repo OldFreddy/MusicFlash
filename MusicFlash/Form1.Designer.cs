@@ -168,9 +168,9 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(284, 401);
+            this.button3.Location = new System.Drawing.Point(284, 385);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(549, 21);
+            this.button3.Size = new System.Drawing.Size(483, 37);
             this.button3.TabIndex = 12;
             this.button3.Text = "Start";
             this.button3.UseVisualStyleBackColor = true;

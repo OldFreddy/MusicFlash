@@ -98,7 +98,7 @@ namespace MusicFlash
                 FreeSpace = di.AvailableFreeSpace;// 1024 / 1024 / 1024;
                 // MessageBox.Show(FreeSpace.ToString() + " Gb");
                 label3.Visible = true;
-                label3.Text = FreeSpace.ToString() + " Gb Free" ;
+                label3.Text = Math.Ceiling(FreeSpace/1024/1024/1024).ToString() + " Gb Free" ;
                 //label3.Text = Convert.ToString(FreeSpace);
             }
 
@@ -222,7 +222,7 @@ namespace MusicFlash
             string a = filenamesSORT.Length.ToString(); //общее число файлов
             string b = numericUpDown1.Value.ToString(); //указанное пользователем число файлов в директории
             FolderCount = Math.Ceiling(Convert.ToDouble(a) / Convert.ToDouble(b)); //рассчет количества директорий 
-            label5.Text = (Convert.ToString(FolderCount) + "директорий");
+            label5.Text = (Convert.ToString(FolderCount) + " директорий");
             
         }
 
