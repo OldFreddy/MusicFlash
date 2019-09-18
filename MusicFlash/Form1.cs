@@ -154,7 +154,7 @@ namespace MusicFlash
 
             List<string> list = new List<string>(); //задаем динамический массив
 
-            for (int i = 0; i < filenameswithdir.Length; i++)
+            for (int i = 0; i < filenameswithdir.Length - 1; i++)
             {
                 filenamesSORT[i] = Path.GetFileName(filenameswithdir[massrnd[i]]);
                 listBox2.Items.Add(filenamesSORT[i]);
