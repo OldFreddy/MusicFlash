@@ -202,61 +202,32 @@ namespace MusicFlash
 
             for (int i = 0; i < testmass.Length; i++)
             {
-                Random rand = new Random();
-                int rndvalue = rand.Next(10);
-                
+                             
 
                 FolderName = 1 + i / filesInDir;
 
                 if (!Directory.Exists(FlashFolder + "/" + FolderName)) //проверка на существование директории
                 {
                     Directory.CreateDirectory(FlashFolder + "/" + FolderName); //создание директории
-
-                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
-
-                    {
-                        if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
-                        {
-                            File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
-                            progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
-                            int x = progressBar1.Value * 100 / testmass.Length;
-                            label6.Text = x.ToString() + " %";  //проценты прогресса
-                            label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
-                            Application.DoEvents(); //прерывание, чтобы не зависала оболочка
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-
                 }
-                else if (Directory.Exists(FlashFolder + "/" + FolderName))
+                if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
+
                 {
-                    int countOfDirs = Directory.GetDirectories(FlashFolder).Length;
-                    FolderName = countOfDirs + FolderName; //Вычисление количества созданных директорий
-                    listBox3.Items.Add((FolderCount));
-                    Directory.CreateDirectory(FlashFolder + "/" + FolderName); //создание директории
-
-                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + Path.GetFileName(testmass[i])))
-
+                    if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
                     {
-                        if (!File.Exists(FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])))
-                        {
-                            File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
-                            progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
-                            int x = progressBar1.Value * 100 / testmass.Length;
-                            label6.Text = x.ToString() + " %";  //проценты прогресса
-                            label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
-                            Application.DoEvents(); //прерывание, чтобы не зависала оболочка
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                        File.Copy(testmass[i], FlashFolder + "/" + FolderName + "/" + i + Path.GetFileName(testmass[i])); // копирование файлов
+                        progressBar1.Value = progressBar1.Value + 1; //увеличение прогресбара
+                        int x = progressBar1.Value * 100 / testmass.Length;
+                        label6.Text = x.ToString() + " %";  //проценты прогресса
+                        label7.Text = Path.GetFileName(testmass[i]); //отображение текущего копируемого файла
+                        Application.DoEvents(); //прерывание, чтобы не зависала оболочка
                     }
-
+                    else
+                    {
+                        continue;
+                    }
                 }
+                
 
 
             }
